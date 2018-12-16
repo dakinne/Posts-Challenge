@@ -1,6 +1,6 @@
 package com.noox.postschallenge.posts.data
 
-class PostsRepository(private val postsDataSource: PostsDataSource) {
+class PostRepository(private val postsDataSource: PostDataSource) {
 
     fun loadPosts() = postsDataSource.loadPosts()
 
