@@ -1,6 +1,7 @@
 package com.noox.postschallenge.posts.ui.detail
 
 import com.noox.postschallenge.posts.domain.model.Comment
+import com.noox.postschallenge.posts.domain.model.Post
 import com.noox.postschallenge.posts.domain.usecase.LoadComments
 
 class PostDetailPresenter(
@@ -9,10 +10,10 @@ class PostDetailPresenter(
 
     var view: PostDetailView? = null
 
-    fun init() {
+    fun init(post: Post) {
         view?.let {
-            it.showLoading()
-            loadComments(::onSuccess, ::onError)
+            it.showPost(post)
+            loadComments(post.id, ::onSuccess, ::onError)
         }
     }
 
@@ -22,19 +23,10 @@ class PostDetailPresenter(
     }
 
     private fun onSuccess(comments: List<Comment>) {
-        view?.run {
-            hideLoading()
-            when {
-                comments.isEmpty() -> showEmptyList()
-                else -> showComments(comments)
-            }
-        }
+        view?.showComments(comments)
     }
 
     private fun onError(throwable: Throwable) {
-        view?.run {
-            hideLoading()
-            showError()
-        }
+        view?.showError()
     }
 }

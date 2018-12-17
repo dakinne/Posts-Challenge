@@ -6,5 +6,5 @@ class PostDataSource(private val apiService: ApiService) {
 
     fun loadPosts() = apiService.loadPosts()
 
-    fun loadComments() = apiService.loadComments()
+    fun loadComments(postId: Int) = apiService.loadComments(postId)
 }

@@ -12,12 +12,13 @@ class LoadComments(
 ): BaseUseCase() {
 
     operator fun invoke(
+        postId: Int,
         onSuccess: (List<Comment>) -> Unit,
         onError: (Throwable) -> Unit
     ) {
-        addDisposable(repository.loadComments()
-            .observeOn(executorThread)
-            .subscribeOn(uiThread)
+        addDisposable(repository.loadComments(postId)
+            .subscribeOn(executorThread)
+            .observeOn(uiThread)
             .subscribe(onSuccess, onError))
     }
 }

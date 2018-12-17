@@ -55,7 +55,7 @@ class PostListActivity : AppCompatActivity(), PostListView {
     override fun showPosts(posts: List<Post>) {
         postList.adapter = PostListAdapter(posts) {
             val intent = Intent(this, PostDetailActivity::class.java)
-            intent.putExtra("POST", it)
+            intent.putExtra(PostDetailActivity.EXTRA_POST, it)
             startActivity(intent)
         }
     }

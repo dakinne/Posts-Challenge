@@ -4,5 +4,5 @@ class PostRepository(private val postsDataSource: PostDataSource) {
 
     fun loadPosts() = postsDataSource.loadPosts()
 
-    fun loadComments() = postsDataSource.loadComments()
+    fun loadComments(postId: Int) = postsDataSource.loadComments(postId)
 }

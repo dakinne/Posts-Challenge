@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">Posts Challenge</string>
+	<string name="app_name">Posts Challenge</string>
 
-    <string name="error_message_loading_posts">Error loading posts</string>
+	<string name="error_message_loading_posts">Error loading posts</string>
 
-    <string name="post_list_empty">there are no posts</string>
+	<string name="post_list_empty">there are no posts</string>
+
+	<string name="post_detail_loading_comments">loading comments</string>
 </resources>
