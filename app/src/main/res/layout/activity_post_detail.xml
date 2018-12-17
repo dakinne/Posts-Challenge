@@ -10,7 +10,31 @@
 	<androidx.recyclerview.widget.RecyclerView
 		android:id="@+id/postItemsList"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
+		android:layout_height="wrap_content"
 		app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/loading"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:orientation="horizontal"
+		android:padding="16dp"
+		android:visibility="gone">
+
+		<ProgressBar
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:indeterminateTint="@color/colorAccent"
+			android:indeterminateTintMode="src_atop" />
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="8dp"
+			android:textAppearance="?attr/textAppearanceBody2"
+			android:text="@string/post_detail_loading_comments" />
+
+	</LinearLayout>
 
 </LinearLayout>

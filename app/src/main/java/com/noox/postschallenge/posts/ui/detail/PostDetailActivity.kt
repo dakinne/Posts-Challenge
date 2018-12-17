@@ -1,6 +1,7 @@
 package com.noox.postschallenge.posts.ui.detail
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.noox.postschallenge.R
@@ -46,6 +47,14 @@ class PostDetailActivity : AppCompatActivity(), PostDetailView {
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
+    }
+
+    override fun showLoading() {
+        loading.visibility = View.VISIBLE
+    }
+
+    override fun hideLoading() {
+        loading.visibility = View.INVISIBLE
     }
 
     override fun showError() {

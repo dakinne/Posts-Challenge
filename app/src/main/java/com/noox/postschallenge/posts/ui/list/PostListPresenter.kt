@@ -1,6 +1,5 @@
 package com.noox.postschallenge.posts.ui.list
 
-import android.util.Log
 import com.noox.postschallenge.posts.domain.model.Post
 import com.noox.postschallenge.posts.domain.usecase.LoadPosts
 

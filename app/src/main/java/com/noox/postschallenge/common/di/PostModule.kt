@@ -13,13 +13,13 @@ val postModule = module {
     factory { PostListPresenter(loadPosts = get()) }
     factory { PostDetailPresenter(loadComments = get()) }
 
-    single { LoadPosts(
+    factory { LoadPosts(
         repository = get(),
         executorThread = get("executor_thread"),
         uiThread = get("ui_thread")
     ) }
 
-    single { LoadComments(
+    factory { LoadComments(
         repository = get(),
         executorThread = get("executor_thread"),
         uiThread = get("ui_thread")

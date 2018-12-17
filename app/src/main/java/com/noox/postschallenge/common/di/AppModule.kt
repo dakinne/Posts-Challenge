@@ -41,9 +41,9 @@ private fun createOkHttpClient(): OkHttpClient {
 
     return OkHttpClient.Builder()
         .addInterceptor(interceptor)
-        .connectTimeout(60, TimeUnit.SECONDS)
-        .readTimeout(60, TimeUnit.SECONDS)
-        .writeTimeout(60, TimeUnit.SECONDS)
+        .connectTimeout(10, TimeUnit.SECONDS)
+        .readTimeout(10, TimeUnit.SECONDS)
+        .writeTimeout(10, TimeUnit.SECONDS)
         .addLogInterceptor()
         .build()
 }

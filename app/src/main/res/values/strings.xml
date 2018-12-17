@@ -6,4 +6,11 @@
 	<string name="post_list_empty">there are no posts</string>
 
 	<string name="post_detail_loading_comments">loading comments</string>
+
+	<plurals name="post_detail_num_comments">
+		<item quantity="zero">%1$s comments</item>
+		<item quantity="one">%1$s comment</item>
+		<item quantity="other">%1$s comments</item>
+	</plurals>
+
 </resources>

@@ -9,19 +9,17 @@ import com.noox.postschallenge.posts.domain.model.Post
 import java.security.InvalidParameterException
 
 class PostDetailAdapter(
-    private val post: Post
+    post: Post
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items = arrayListOf<PostDetailItemType>()
 
     init {
         items.add(PostItemType(post))
-        items.add(LoadingItemType())
     }
 
     fun addComments(comments: List<Comment>) {
-        items.clear()
-        items.add(PostItemType(post))
+        items.add(NumCommentsItemType(comments.size))
         comments.forEach {
             items.add(CommentItemType(it))
         }
@@ -33,7 +31,7 @@ class PostDetailAdapter(
         return when(viewType) {
             PostDetailItemType.POST -> PostViewHolder(parent.inflate(R.layout.item_post))
             PostDetailItemType.COMMENT -> CommentViewHolder(parent.inflate(R.layout.item_comment))
-            PostDetailItemType.LOADING -> LoadingCommentsViewHolder(parent.inflate(R.layout.item_loading_comments))
+            PostDetailItemType.NUM_COMMENTS -> NumCommentsViewHolder(parent.inflate(R.layout.item_num_comments))
             else -> throw InvalidParameterException()
         }
     }
@@ -51,6 +49,7 @@ class PostDetailAdapter(
         when(item) {
             is PostItemType -> { (holder as PostViewHolder).bind(item.post) }
             is CommentItemType -> { (holder as CommentViewHolder).bind(item.comment) }
+            is NumCommentsItemType -> { (holder as NumCommentsViewHolder).bind(item.numComments) }
         }
     }
 }

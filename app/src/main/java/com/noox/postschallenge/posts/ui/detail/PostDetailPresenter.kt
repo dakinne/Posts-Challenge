@@ -13,6 +13,7 @@ class PostDetailPresenter(
     fun init(post: Post) {
         view?.let {
             it.showPost(post)
+            it.showLoading()
             loadComments(post.id, ::onSuccess, ::onError)
         }
     }
@@ -23,10 +24,16 @@ class PostDetailPresenter(
     }
 
     private fun onSuccess(comments: List<Comment>) {
-        view?.showComments(comments)
+        view?.run {
+            hideLoading()
+            showComments(comments)
+        }
     }
 
     private fun onError(throwable: Throwable) {
-        view?.showError()
+        view?.run {
+            hideLoading()
+            showError()
+        }
     }
 }
