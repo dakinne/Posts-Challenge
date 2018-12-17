@@ -7,6 +7,8 @@ interface PostDetailView {
     fun showLoading()
     fun hideLoading()
     fun showError()
+    fun showNewCommentPublished()
     fun showPost(post: Post)
     fun showComments(comments: List<Comment>)
+    fun showNewComment(comment: Comment)
 }

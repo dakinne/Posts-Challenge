@@ -20,8 +20,8 @@
 			</intent-filter>
 		</activity>
 
-		<activity
-			android:name=".posts.ui.detail.PostDetailActivity" />
+		<activity android:name=".posts.ui.detail.PostDetailActivity" />
+		<activity android:name=".posts.ui.form.CommentFormActivity" android:label="@string/comment_form_label"/>
 	</application>
 
 </manifest>

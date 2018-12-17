@@ -1,5 +1,6 @@
 package com.noox.postschallenge.posts.ui.detail
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -7,14 +8,15 @@ import androidx.appcompat.app.AppCompatActivity
 import com.noox.postschallenge.R
 import com.noox.postschallenge.posts.domain.model.Comment
 import com.noox.postschallenge.posts.domain.model.Post
-import org.koin.android.ext.android.inject
-
+import com.noox.postschallenge.posts.ui.form.CommentFormActivity
 import kotlinx.android.synthetic.main.activity_post_detail.*
+import org.koin.android.ext.android.inject
 
 class PostDetailActivity : AppCompatActivity(), PostDetailView {
 
     companion object {
         const val EXTRA_POST = "POST"
+        const val PUBLISH_COMMENT_REQUEST = 1
     }
 
     private val presenter: PostDetailPresenter by inject()
@@ -26,12 +28,26 @@ class PostDetailActivity : AppCompatActivity(), PostDetailView {
 
         val post: Post = intent.getParcelableExtra(PostDetailActivity.EXTRA_POST)
 
-        initViews()
+        initViews(post)
         initPresenter(post)
     }
 
-    private fun initViews() {
+    private fun initViews(post: Post) {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        fab.setOnClickListener {
+            val intent = Intent(this, CommentFormActivity::class.java)
+            intent.putExtra(CommentFormActivity.EXTRA_POST_ID, post.id)
+            startActivityForResult(intent, PUBLISH_COMMENT_REQUEST)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == PUBLISH_COMMENT_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                presenter.newCommentPublished()
+            }
+        }
     }
 
     private fun initPresenter(post: Post) {
@@ -68,5 +84,13 @@ class PostDetailActivity : AppCompatActivity(), PostDetailView {
 
     override fun showComments(comments: List<Comment>) {
         adapter?.addComments(comments)
+    }
+
+    override fun showNewComment(comment: Comment) {
+        adapter?.addComment(comment)
+    }
+
+    override fun showNewCommentPublished() {
+        Toast.makeText(this, getString(R.string.post_detail_new_comment_published), Toast.LENGTH_LONG).show()
     }
 }

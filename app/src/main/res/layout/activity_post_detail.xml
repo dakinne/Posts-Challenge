@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
@@ -7,34 +7,49 @@
 	android:orientation="vertical"
 	tools:context=".posts.ui.detail.PostDetailActivity">
 
-	<androidx.recyclerview.widget.RecyclerView
-		android:id="@+id/postItemsList"
+	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+		android:layout_height="match_parent"
+		android:orientation="vertical">
 
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:id="@+id/loading"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:gravity="center"
-		android:orientation="horizontal"
-		android:padding="16dp"
-		android:visibility="gone">
-
-		<ProgressBar
-			android:layout_width="24dp"
-			android:layout_height="24dp"
-			android:indeterminateTint="@color/colorAccent"
-			android:indeterminateTintMode="src_atop" />
-
-		<TextView
-			android:layout_width="wrap_content"
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/postItemsList"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginLeft="8dp"
-			android:textAppearance="?attr/textAppearanceBody2"
-			android:text="@string/post_detail_loading_comments" />
+			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:id="@+id/loading"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:orientation="horizontal"
+			android:padding="16dp"
+			android:visibility="gone">
+
+			<ProgressBar
+				android:layout_width="24dp"
+				android:layout_height="24dp"
+				android:indeterminateTint="@color/colorAccent"
+				android:indeterminateTintMode="src_atop" />
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="8dp"
+				android:text="@string/post_detail_loading_comments"
+				android:textAppearance="?attr/textAppearanceBody2" />
+
+		</LinearLayout>
 
 	</LinearLayout>
 
-</LinearLayout>
+	<com.google.android.material.floatingactionbutton.FloatingActionButton
+		android:id="@+id/fab"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="end|bottom"
+		android:layout_margin="@dimen/fab_margin"
+		app:srcCompat="@drawable/ic_plus_white_24dp" />
+
+</FrameLayout>

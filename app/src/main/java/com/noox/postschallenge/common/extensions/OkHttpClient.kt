@@ -17,7 +17,7 @@ fun OkHttpClient.Builder.addLogInterceptor() : OkHttpClient.Builder {
             val request = builder1.build()
 
             val startTime = System.nanoTime()
-            Log.d(
+            Log.i(
                 "OkHttpClient",
                 String.format("Sending request: %s\n%s", request.url(), request.headers())
             )
@@ -25,20 +25,20 @@ fun OkHttpClient.Builder.addLogInterceptor() : OkHttpClient.Builder {
             val response = chain.proceed(request)
 
             val requestTime = (System.nanoTime() - startTime) / 1e6
-            Log.d(
+            Log.i(
                 "OkHttpClient", String.format(
                     Locale.getDefault(), "Received response for %s in %.1fms%n%s",
                     response.request().url(), requestTime, response.headers()
                 )
             )
 
-            Log.d("OkHttpClient", "responseCode: " + response.code())
+            Log.i("OkHttpClient", "responseCode: " + response.code())
 
             val body = response.body()
             if (body != null) {
 
                 val responseBody = body.string()
-                Log.d("OkHttpClient", "responseBody: $responseBody")
+                Log.i("OkHttpClient", "responseBody: $responseBody")
 
                 response.newBuilder()
                     .body(ResponseBody.create(body.contentType(), responseBody))
@@ -46,7 +46,7 @@ fun OkHttpClient.Builder.addLogInterceptor() : OkHttpClient.Builder {
 
             } else {
 
-                Log.d("OkHttpClient", "responseBody: NULL")
+                Log.i("OkHttpClient", "responseBody: NULL")
                 response.newBuilder()
                     .body(ResponseBody.create(MediaType.parse("txt"), ""))
                     .build()

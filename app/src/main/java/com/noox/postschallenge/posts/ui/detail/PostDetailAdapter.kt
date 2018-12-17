@@ -13,16 +13,27 @@ class PostDetailAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items = arrayListOf<PostDetailItemType>()
+    private var numComments = 0
 
     init {
         items.add(PostItemType(post))
     }
 
     fun addComments(comments: List<Comment>) {
-        items.add(NumCommentsItemType(comments.size))
+        numComments = comments.size
+        items.add(NumCommentsItemType(numComments))
+
         comments.forEach {
             items.add(CommentItemType(it))
         }
+        notifyDataSetChanged()
+    }
+
+    fun addComment(comment: Comment) {
+        numComments++
+        items[1] = NumCommentsItemType(numComments)
+
+        items.add(CommentItemType(comment))
         notifyDataSetChanged()
     }
 

@@ -2,15 +2,23 @@
 	<string name="app_name">Posts Challenge</string>
 
 	<string name="error_message_loading_posts">Error loading posts</string>
+	<string name="error_message_publishing_comment">Error publishing the comment</string>
 
 	<string name="post_list_empty">there are no posts</string>
 
 	<string name="post_detail_loading_comments">loading comments</string>
+	<string name="post_detail_new_comment_published">Congratz!!! The comment has published</string>
 
 	<plurals name="post_detail_num_comments">
 		<item quantity="zero">%1$s comments</item>
 		<item quantity="one">%1$s comment</item>
 		<item quantity="other">%1$s comments</item>
 	</plurals>
+
+	<string name="comment_form_label">New comment</string>
+	<string name="comment_form_name">Name</string>
+	<string name="comment_form_message">Message</string>
+	<string name="comment_form_publish">Publish</string>
+	<string name="comment_form_field_mandatory">Field mandatory</string>
 
 </resources>

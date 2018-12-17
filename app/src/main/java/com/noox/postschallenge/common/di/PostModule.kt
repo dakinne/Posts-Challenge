@@ -4,14 +4,23 @@ import com.noox.postschallenge.posts.data.PostDataSource
 import com.noox.postschallenge.posts.data.PostRepository
 import com.noox.postschallenge.posts.domain.usecase.LoadComments
 import com.noox.postschallenge.posts.domain.usecase.LoadPosts
+import com.noox.postschallenge.posts.domain.usecase.PublishComment
 import com.noox.postschallenge.posts.ui.detail.PostDetailPresenter
+import com.noox.postschallenge.posts.ui.form.CommentFormPresenter
 import com.noox.postschallenge.posts.ui.list.PostListPresenter
 import org.koin.dsl.module.module
 
 val postModule = module {
 
-    factory { PostListPresenter(loadPosts = get()) }
     factory { PostDetailPresenter(loadComments = get()) }
+    factory { CommentFormPresenter(publishComment = get() ) }
+    factory { PostListPresenter(loadPosts = get()) }
+
+    factory { LoadComments(
+        repository = get(),
+        executorThread = get("executor_thread"),
+        uiThread = get("ui_thread")
+    ) }
 
     factory { LoadPosts(
         repository = get(),
@@ -19,10 +28,11 @@ val postModule = module {
         uiThread = get("ui_thread")
     ) }
 
-    factory { LoadComments(
+    factory { PublishComment(
         repository = get(),
         executorThread = get("executor_thread"),
         uiThread = get("ui_thread")
+
     ) }
 
     single { PostRepository(
