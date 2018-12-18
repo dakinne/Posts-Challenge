@@ -3,7 +3,6 @@ package com.noox.postschallenge.common.data
 import com.noox.postschallenge.posts.data.CommentPublishResponse
 import com.noox.postschallenge.posts.domain.model.Comment
 import com.noox.postschallenge.posts.domain.model.Post
-import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.POST

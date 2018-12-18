@@ -1,7 +1,5 @@
 package com.noox.postschallenge.posts.data
 
-import com.noox.postschallenge.posts.domain.model.Comment
-
 class PostRepository(private val postsDataSource: PostDataSource) {
 
     fun loadPosts() = postsDataSource.loadPosts()

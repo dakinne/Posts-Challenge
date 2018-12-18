@@ -16,7 +16,6 @@ class PostDetailActivity : AppCompatActivity(), PostDetailView {
 
     companion object {
         const val EXTRA_POST = "POST"
-        const val PUBLISH_COMMENT_REQUEST = 1
     }
 
     private val presenter: PostDetailPresenter by inject()
@@ -38,15 +37,7 @@ class PostDetailActivity : AppCompatActivity(), PostDetailView {
         fab.setOnClickListener {
             val intent = Intent(this, CommentFormActivity::class.java)
             intent.putExtra(CommentFormActivity.EXTRA_POST_ID, post.id)
-            startActivityForResult(intent, PUBLISH_COMMENT_REQUEST)
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == PUBLISH_COMMENT_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                presenter.newCommentPublished()
-            }
+            startActivity(intent)
         }
     }
 

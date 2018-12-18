@@ -5,7 +5,6 @@ import com.noox.postschallenge.common.bus.RxBus
 import com.noox.postschallenge.posts.domain.model.Comment
 import com.noox.postschallenge.posts.domain.model.Post
 import com.noox.postschallenge.posts.domain.usecase.LoadComments
-import io.reactivex.disposables.CompositeDisposable
 
 class PostDetailPresenter(
     private val loadComments: LoadComments
@@ -13,8 +12,6 @@ class PostDetailPresenter(
 
     var view: PostDetailView? = null
     private lateinit var post: Post
-
-    private val eventDisposables = CompositeDisposable()
 
     fun init(post: Post) {
         this.post = post
@@ -25,9 +22,10 @@ class PostDetailPresenter(
             loadComments(post.id, ::onSuccess, ::onError)
         }
 
-        eventDisposables.add(
-            RxBus.listen(Event.CommentPublished::class.java)
-                .subscribe { onCommentPublished(it.comment) }
+        RxBus.register(this,
+            RxBus.listen(Event.CommentPublished::class.java) {
+                onCommentPublished(it.comment)
+            }
         )
     }
 
@@ -41,7 +39,7 @@ class PostDetailPresenter(
     fun destroy() {
         view = null
         loadComments.dispose()
-        eventDisposables.dispose()
+        RxBus.unregister(this)
     }
 
     private fun onSuccess(comments: List<Comment>) {
@@ -56,10 +54,5 @@ class PostDetailPresenter(
             hideLoading()
             showError()
         }
-    }
-
-    fun newCommentPublished() {
-        view?.showNewCommentPublished()
-        loadComments(post.id, ::onSuccess, ::onError)
     }
 }

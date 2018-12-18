@@ -8,7 +8,7 @@ import android.widget.TextView
  * Add an action which will be invoked before the text changed
  */
 fun TextView.doBeforeTextChanged(
-        action: (text: CharSequence?, start: Int, count: Int, after: Int) -> Unit
+    action: (text: CharSequence?, start: Int, count: Int, after: Int) -> Unit
 ) {
     addTextChangedListener(beforeTextChanged = action)
 }
@@ -17,7 +17,7 @@ fun TextView.doBeforeTextChanged(
  * Add an action which will be invoked when the text is changing
  */
 fun TextView.doOnTextChanged(
-        action: (text: CharSequence?, start: Int, count: Int, after: Int) -> Unit
+    action: (text: CharSequence?, start: Int, count: Int, after: Int) -> Unit
 ) {
     addTextChangedListener(onTextChanged = action)
 }
@@ -26,7 +26,7 @@ fun TextView.doOnTextChanged(
  * Add an action which will be invoked after the text changed
  */
 fun TextView.doAfterTextChanged(
-        action: (text: Editable?) -> Unit
+    action: (text: Editable?) -> Unit
 ) {
     addTextChangedListener(afterTextChanged = action)
 }
@@ -35,9 +35,9 @@ fun TextView.doAfterTextChanged(
  * Add a text changed listener to this TextView using the provided actions
  */
 fun TextView.addTextChangedListener(
-        beforeTextChanged: ((text: CharSequence?, start: Int, count: Int, after: Int) -> Unit)? = null,
-        onTextChanged: ((text: CharSequence?, start: Int, count: Int, after: Int) -> Unit)? = null,
-        afterTextChanged: ((text: Editable?) -> Unit)? = null
+    beforeTextChanged: ((text: CharSequence?, start: Int, count: Int, after: Int) -> Unit)? = null,
+    onTextChanged: ((text: CharSequence?, start: Int, count: Int, after: Int) -> Unit)? = null,
+    afterTextChanged: ((text: Editable?) -> Unit)? = null
 ) {
     addTextChangedListener(object : TextWatcher {
         override fun afterTextChanged(s: Editable?) {
